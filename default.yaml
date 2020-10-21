@@ -1,0 +1,7 @@
+---
+hostPort: HOSTPORT
+username:
+password:
+
+rules:
+- pattern: ".*"
