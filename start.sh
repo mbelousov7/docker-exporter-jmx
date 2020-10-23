@@ -1,11 +1,15 @@
 #!/bin/sh
 
 if [ -z "$EXPORTER_PORT" ]; then
-  EXPORTER_PORT=5556
+  EXPORTER_PORT=5555
 fi
 
-if [ -z "$HOSTPORT" ] || [ -z "$JMXURL" ]; then
+if [ -z "$HOST" ] || [ -z "$JMXURL" ]; then
   HOSTPORT="hostPort: localhost:5555"
+fi
+
+if [ "$HOST" ] || [ "$PORT" ]; then
+  HOSTPORT="hostPort: $HOST:$PORT"
 fi
 
 if [ -z "$JVM_OPTS" ]; then
