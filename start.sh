@@ -4,23 +4,35 @@ if [ -z "$EXPORTER_PORT" ]; then
   EXPORTER_PORT=5556
 fi
 
-if [ -z "$JMX_PORT" ]; then
-  JMX_PORT=5555
-fi
-
-if [ -z "$JMX_HOST" ]; then
-  JMX_HOST=localhost
+if [ -z "$HOSTPORT" ] || [ -z "$JMXURL" ]; then
+  HOSTPORT="hostPort: localhost:5555"
 fi
 
 if [ -z "$JVM_OPTS" ]; then
   JVM_OPTS=""
 fi
 
+if [ -z "$JMXURL" ]; then
+  JMXURL=""
+fi
+
+if [ -z "$SSL" ]; then
+  SSL=""
+fi
+
+if [ -z "$USERNAME" ]; then
+  USERNAME=""
+fi
+
+if [ -z "$PASSWORD" ]; then
+  PASSWORD=""
+fi
+
 if [ -z "$JMX_ROLE" ]; then
   JMX_ROLE=default
 fi
 
-sed "s/HOSTPORT/$JMX_HOST:$JMX_PORT/g" /opt/exporter-jmx/configs/$JMX_ROLE.yaml > /opt/exporter-jmx/config.yaml
+sed "s/HOSTPORT/$HOSTPORT/g;s/JMXURL/$JMXURL/g;s/SSL/$SSL/g;s/USERNAME/$USERNAME/g;s/PASSWORD/$PASSWORD/g" /opt/exporter-jmx/configs/$JMX_ROLE.yaml > /opt/exporter-jmx/config.yaml
 
 if [ -z "$CONFIG_YAML" ]; then
   CONFIG_YAML=/opt/exporter-jmx/config.yaml
