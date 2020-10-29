@@ -5,7 +5,7 @@ if [ -z "$EXPORTER_PORT" ]; then
 fi
 
 if [ -z "$HOST" ] || [ -z "$JMXURL" ]; then
-  HOSTPORT="hostPort: localhost:5555"
+  HOSTPORT="hostPort: localhost:5556"
 fi
 
 if [ "$HOST" ] || [ "$PORT" ]; then
