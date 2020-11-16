@@ -1,8 +1,8 @@
 # docker-exporter-jmx
 docker JMX to Prometheus exporter
 
-docker build -t drjetf/exporter-jmx:1.4.0 .
-docker push drjetf/exporter-jmx:v1.4.0
+docker build -t drjetf/exporter-jmx:1.5.0 .
+docker push drjetf/exporter-jmx:v1.5.0
 docker run --rm -it -p "5555:5555" --name jmx drjetf/exporter-jmx:v1.2.0
 
 docker run --rm -p "5555:5555" --name jmx \
