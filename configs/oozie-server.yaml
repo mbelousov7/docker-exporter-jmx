@@ -1,4 +1,5 @@
 ---
+#roletype: oozie
 startDelaySeconds: 0
 HOSTPORT
 JMXURL
@@ -34,6 +35,7 @@ rules:
   name: hadoop_oozie_server_jmx_type_$1_$3
   labels:
     name: $2
+    service: oozie
   type: GAUGE
 
 #Catalina<j2eeType=Servlet, name=v2sla, WebModule=//localhost/oozie, J2EEApplication=none, J2EEServer=none><>error_count: 0
@@ -45,12 +47,15 @@ rules:
     WebModule: $3
     J2EEApplication: $4
     J2EEServer: $5
+    service: oozie
   type: GAUGE
 
 #Catalina<type=StringCache><>hit_count: 7749829
 - pattern: 'Catalina<type=(StringCache)><>([a-zA-Z\s_]*): (\d+)'
   attrNameSnakeCase: true
   name: hadoop_oozie_server_jmx_type_$1_$2
+  labels:
+    service: oozie
   type: GAUGE
 
 #Catalina<type=Manager, path=/oozie, host=localhost><>session_id_length: 16
@@ -60,6 +65,7 @@ rules:
   labels:
     path: $2
     host: $3
+    service: oozie
   type: GAUGE
 
 #Catalina<type=Cache, host=localhost, path=/><>access_count: 23
@@ -69,57 +75,77 @@ rules:
   labels:
     host: $2
     path: $3
+    service: oozie
   type: GAUGE
 
 #JMX Standart metrics
 
 - pattern: 'java.lang<type=(Memory)><([a-zA-Z\s]*)>(used|committed|max|init): (\d+)'
   name: jmx_java_lang_$1_$2_$3
+  labels:
+    service: oozie
   type: GAUGE
   value: $4
 
 - pattern: 'java.lang<type=(Memory|Runtime|Threading)><([a-zA-Z\s]*)>([a-zA-Z\s])<>(used|committed|max|init): (\d+)'
   name: jmx_java_lang_$1_$2_$3
+  labels:
+    service: oozie
   type: GAUGE
 
 - pattern: 'java.lang<type=(OperatingSystem)><>([a-zA-Z\s]*): (\d+)'
   name: jmx_java_lang_$1_$2
+  labels:
+    service: oozie
   type: GAUGE
 
 - pattern: 'java.lang<type=(ClassLoading)><>(UnloadedClassCount|TotalLoadedClassCount|LoadedClassCount): (\d+)'
   name: jmx_java_lang_$1_$2
+  labels:
+    service: oozie
   type: COUNTER
 
 - pattern: 'java.lang<type=(Compilation)><>(TotalCompilationTime|Name): (\d+)'
   name: jmx_java_lang_$1_$2
+  labels:
+    service: oozie
   type: GAUGE
 
 - pattern: 'java.lang<type=(Runtime)><>(VmVersion|VmName|Uptime): (\d+)'
   name: jmx_java_lang_$1_$2
+  labels:
+    service: oozie
   type: GAUGE
 
 - pattern: 'java.lang<type=(Threading)><>(TotalStartedThreadCount|ThreadCount|PeakThreadCount|DaemonThreadCount): (\d+)'
   name: jmx_java_lang_$1_$2
+  labels:
+    service: oozie
   type: GAUGE
 
 - pattern: 'java.lang<type=(GarbageCollector), name=([a-zA-Z\s0-9]*)><>(CollectionTime): (\d+)'
   name: jmx_java_lang_$1_$3
   labels:
     name: $2
+    service: oozie
   type: GAUGE
 
 - pattern: 'java.lang<type=(GarbageCollector), name=([a-zA-Z\s0-9]*)><>(CollectionCount): (\d+)'
   name: jmx_java_lang_$1_$3
   labels:
     name: $2
+    service: oozie
   type: COUNTER
 
 - pattern: 'java.lang<type=(MemoryPool), name=([a-zA-Z\s]*)><([a-zA-Z\s]*)>(committed|max|used): (\d+)'
   name: jmx_java_lang_$1_$3_$4
   labels:
     name: $2
+    service: oozie
   type: GAUGE
 
 - pattern: 'java.lang<type=(Memory)><>(ObjectPendingFinalizationCount): (\d+)'
   name: jmx_java_lang_$1_$2
+  labels:
+    service: oozie
   type: GAUGE

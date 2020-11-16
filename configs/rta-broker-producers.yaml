@@ -17,4 +17,5 @@ rules:
   labels:
     type: $1
     name: $2
+    service: rta
   type: GAUGE
