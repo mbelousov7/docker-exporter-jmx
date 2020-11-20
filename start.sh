@@ -36,10 +36,10 @@ if [ -z "$JMX_ROLE" ]; then
   JMX_ROLE=default
 fi
 
-sed "s/HOSTPORT/$HOSTPORT/g;s/JMXURL/$JMXURL/g;s/SSL/$SSL/g;s/USERNAME/$USERNAME/g;s/PASSWORD/$PASSWORD/g" /opt/exporter-jmx/configs/$JMX_ROLE.yaml > /opt/exporter-jmx/config.yaml
+sed "s/INSTANCE/$HOST/g;s/HOSTPORT/$HOSTPORT/g;s/JMXURL/$JMXURL/g;s/SSL/$SSL/g;s/USERNAME/$USERNAME/g;s/PASSWORD/$PASSWORD/g" /opt/exporter-jmx/configs/$JMX_ROLE.yml > /opt/exporter-jmx/default.yml
 
 if [ -z "$CONFIG_YAML" ]; then
-  CONFIG_YAML=/opt/exporter-jmx/config.yaml
+  CONFIG_YAML=/opt/exporter-jmx/default.yml
 fi
 
 java $JVM_OPTS -jar /opt/exporter-jmx/bin/jmx_prometheus_httpserver-$VERSION-jar-with-dependencies.jar $EXPORTER_PORT $CONFIG_YAML
