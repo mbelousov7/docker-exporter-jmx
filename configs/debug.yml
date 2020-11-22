@@ -13,7 +13,9 @@ rules:
 # Debug
 - pattern: '[a-z]*'
 #  attrNameSnakeCase: true
-  name: sentry_debug
+  name: jmx_debug
   labels:
+    instance: INSTANCE
+    service: debug_service
     debug: $0
   type: GAUGE

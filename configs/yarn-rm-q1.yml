@@ -23,6 +23,7 @@ rules:
     q2: "null"
     q3: "null"
     q4: "null"
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 

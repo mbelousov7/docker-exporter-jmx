@@ -30,6 +30,7 @@ rules:
   name: hadoop_zookeeper_server_$2
   labels:
     name0: ReplicatedServer_id$1
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
@@ -38,6 +39,7 @@ rules:
   labels:
     name0: ReplicatedServer_id$1
     name1: replica.$2
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
@@ -46,6 +48,7 @@ rules:
   labels:
     name0: ReplicatedServer_id$1
     name1: replica.$2
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
@@ -55,6 +58,7 @@ rules:
     name0: ReplicatedServer_id$1
     name1: replica.$2
     name2: $3
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
@@ -66,6 +70,7 @@ rules:
     name1: replica.$2
     name2: $3
     name3: $4
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
@@ -77,6 +82,7 @@ rules:
     name2: $3
     name3: $4
     name4: $5
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
@@ -108,6 +114,7 @@ rules:
 - pattern: 'java.lang<type=(Memory)><([a-zA-Z\s]*)>(used|committed|max|init): (\d+)'
   name: jmx_java_lang_$1_$2_$3
   labels:
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
   value: $4
@@ -115,36 +122,42 @@ rules:
 - pattern: 'java.lang<type=(Memory|Runtime|Threading)><([a-zA-Z\s]*)>([a-zA-Z\s])<>(used|committed|max|init): (\d+)'
   name: jmx_java_lang_$1_$2_$3
   labels:
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
 - pattern: 'java.lang<type=(OperatingSystem)><>([a-zA-Z\s]*): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
 - pattern: 'java.lang<type=(ClassLoading)><>(UnloadedClassCount|TotalLoadedClassCount|LoadedClassCount): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: zookeeper
   type: COUNTER
 
 - pattern: 'java.lang<type=(Compilation)><>(TotalCompilationTime|Name): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
 - pattern: 'java.lang<type=(Runtime)><>(VmVersion|VmName|Uptime): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
 - pattern: 'java.lang<type=(Threading)><>(TotalStartedThreadCount|ThreadCount|PeakThreadCount|DaemonThreadCount): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
@@ -152,6 +165,7 @@ rules:
   name: jmx_java_lang_$1_$3
   labels:
     name: $2
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE
 
@@ -159,6 +173,7 @@ rules:
   name: jmx_java_lang_$1_$3
   labels:
     name: $2
+    instance: INSTANCE
     service: zookeeper
   type: COUNTER
 
@@ -166,5 +181,6 @@ rules:
   name: jmx_java_lang_$1_$3_$4
   labels:
     name: $2
+    instance: INSTANCE
     service: zookeeper
   type: GAUGE

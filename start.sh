@@ -36,6 +36,7 @@ if [ -z "$JMX_ROLE" ]; then
   JMX_ROLE=default
 fi
 
+#envsubst < /opt/exporter-jmx/configs/$JMX_ROLE.yml > /opt/exporter-jmx/default.yml
 sed "s/INSTANCE/$HOST/g;s/HOSTPORT/$HOSTPORT/g;s/JMXURL/$JMXURL/g;s/SSL/$SSL/g;s/USERNAME/$USERNAME/g;s/PASSWORD/$PASSWORD/g" /opt/exporter-jmx/configs/$JMX_ROLE.yml > /opt/exporter-jmx/default.yml
 
 if [ -z "$CONFIG_YAML" ]; then

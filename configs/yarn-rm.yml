@@ -32,6 +32,7 @@ rules:
   name: hadoop_yarn_jmx_$3
   labels:
     name: $2
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 
@@ -40,6 +41,7 @@ rules:
 - pattern: 'java.lang<type=(Memory)><([a-zA-Z\s]*)>(used|committed|max|init): (\d+)'
   name: jmx_java_lang_$1_$2_$3
   labels:
+    instance: INSTANCE
     service: yarn
   type: GAUGE
   value: $4
@@ -47,36 +49,42 @@ rules:
 - pattern: 'java.lang<type=(Memory|Runtime|Threading)><([a-zA-Z\s]*)>([a-zA-Z\s])<>(used|committed|max|init): (\d+)'
   name: jmx_java_lang_$1_$2_$3
   labels:
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 
 - pattern: 'java.lang<type=(OperatingSystem)><>([a-zA-Z\s]*): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 
 - pattern: 'java.lang<type=(ClassLoading)><>(UnloadedClassCount|TotalLoadedClassCount|LoadedClassCount): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: yarn
   type: COUNTER
 
 - pattern: 'java.lang<type=(Compilation)><>(TotalCompilationTime|Name): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 
 - pattern: 'java.lang<type=(Runtime)><>(VmVersion|VmName|Uptime): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 
 - pattern: 'java.lang<type=(Threading)><>(TotalStartedThreadCount|ThreadCount|PeakThreadCount|DaemonThreadCount): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 
@@ -84,6 +92,7 @@ rules:
   name: jmx_java_lang_$1_$3
   labels:
     name: $2
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 
@@ -91,6 +100,7 @@ rules:
   name: jmx_java_lang_$1_$3
   labels:
     name: $2
+    instance: INSTANCE
     service: yarn
   type: COUNTER
 
@@ -98,11 +108,13 @@ rules:
   name: jmx_java_lang_$1_$3_$4
   labels:
     name: $2
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 
 - pattern: 'java.lang<type=(Memory)><>(ObjectPendingFinalizationCount): (\d+)'
   name: jmx_java_lang_$1_$2
   labels:
+    instance: INSTANCE
     service: yarn
   type: GAUGE

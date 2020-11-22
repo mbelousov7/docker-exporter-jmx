@@ -22,6 +22,7 @@ rules:
     q2: $5
     q3: $6
     q4: "null"
+    instance: INSTANCE
     service: yarn
   type: GAUGE
 

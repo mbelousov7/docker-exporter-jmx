@@ -1,6 +1,6 @@
 FROM centos:latest
 
-RUN yum update -y && yum install -y java-1.8.0-openjdk
+RUN yum update -y && yum install -y java-1.8.0-openjdk  gettext
 
 ENV VERSION 0.14.0
 ENV JAR jmx_prometheus_httpserver-$VERSION-jar-with-dependencies.jar
