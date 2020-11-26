@@ -8,7 +8,7 @@ PASSWORD
 lowercaseOutputName: true
 lowercaseOutputLabelNames: true
 whitelistObjectNames:
-  - 'org.apache.camel:context=RTA Broker,type=producers,name=*'
+  - 'org.apache.camel:context=RTA Broker,type=processors,name=*'
 blacklistObjectNames: []
 rules:
 - pattern: 'org.apache.camel<context=RTA Broker, type=([a-zA-Z]+), name="([a-zA-Z0-9\s-.:/\\]+)"><>(\w+):'
@@ -17,4 +17,6 @@ rules:
   labels:
     type: $1
     name: $2
+    instance: INSTANCE
+    service: rta
   type: GAUGE

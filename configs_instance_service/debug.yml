@@ -1,0 +1,21 @@
+---
+startDelaySeconds: 0
+HOSTPORT
+JMXURL
+SSL
+USERNAME
+PASSWORD
+lowercaseOutputName: true
+lowercaseOutputLabelNames: true
+
+blacklistObjectNames: []
+rules:
+# Debug
+- pattern: '[a-z]*'
+#  attrNameSnakeCase: true
+  name: jmx_debug
+  labels:
+    instance: INSTANCE
+    service: debug_service
+    debug: $0
+  type: GAUGE

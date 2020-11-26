@@ -17,6 +17,4 @@ rules:
   labels:
     type: $1
     name: $2
-    instance: INSTANCE
-    service: rta
   type: GAUGE
