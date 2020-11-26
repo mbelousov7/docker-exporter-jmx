@@ -14,7 +14,7 @@ whitelistObjectNames:
   - 'metrics:name=memory.heap.max'
   - 'metrics:name=memory.heap.used'
   - 'metrics:name=memory.heap.usage'
-  - 'java.lang:type=GarbageCollector,name=*''
+  - 'java.lang:type=GarbageCollector,name=*'
   - 'java.lang:type=MemoryPool,name=CMS Old Gen,*'
   - 'java.lang:type=MemoryPool,name=CMS Perm Gen'
   - 'java.lang:type=MemoryPool,name=Perm Gen'
