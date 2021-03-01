@@ -1,5 +1,5 @@
 ---
-#resourcemanager
+#yarn resourcemanager - only ResourceManager
 startDelaySeconds: 0
 HOSTPORT
 JMXURL

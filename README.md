@@ -1,30 +1,41 @@
-# docker-exporter-jmx
-docker JMX to Prometheus exporter
-
-
-#Examples
-```
-docker build -t drjetf/exporter-jmx:v1.7.0 .
-docker push drjetf/exporter-jmx:v1.7.0
-docker run --rm -it -p "5555:5555" --name jmx drjetf/exporter-jmx:v1.2.0
-
-docker run --rm -p "5555:5555" --name jmx \
--e JMX_ROLE=default -e HOST=host1 -e PORT=7777 \
-drjetf/exporter-jmx:v1.7.0
-
-docker run --rm -it -p "5555:5555" --name jmx \
--e JMX_ROLE=default -e HOST=host1 -e PORT=7777 \
-drjetf/exporter-jmx:v1.7.0
-
-
-docker exec -t jmx /bin/bash
-docker exec jmx cat opt/exporter-jmx/default.yml
+### Описание натроек jmx-exporter
+``` bash
+├── start.sh
+├── configs_instance_service
+├── configs
+│   ├── debug.yml
+│   ├── default.yml
+│   └── <имя роли политик мониторинга>.yml
 ```
 
-#Enviroments
-ENV variables in next format
-<varibale from yaml>: <variable value>
-for example
-hostPort: localhost:5555
 
-##env HOST is mandatory to set
+Файл | Описание |
+|:-------|:---------|
+| **start.sh** | Скрипт запуска экспортера в зависимости от переменных окружения |
+| **configs_instance_service** |директория с бэкапом старой версий конфигов где определялось имя инстанса в лейблах метрики|
+| **configs** |директория сактуальной версией конфигов сбора метрик |
+| *debug.yml** | конфиги сбора метрик для настройки мониторинга нового приложения, снимаются все jmx метрики |
+| *default.yml** | Стандартные конфиги сбора jmx метрик с generic java приложения |
+| *<имя роли политик мониторинга>.yml** | Конфиги сбора метрик с определенного java приложения.  |
+
+Если есть несколько конфигов мониторинга одно и того же приложения, например
+``` bash
+yarn-rm-all.yml
+yarn-rm-q0.yml
+yarn-rm-q1.yml
+yarn-rm-q2.yml
+yarn-rm-q3.yml
+yarn-rm-q4.yml
+yarn-rm.yml
+```
+
+то
+**-all.yaml** собирает все метрики приложения.
+
+Остальные файлы собирают часть метрик приложения, например yarn-rm-q1.yml собирает метрики с очередей в q1.
+
+Разделение сделано для распледелия нагрузки крупного(по метрикам) приложения между экспортерами запускаемыми удаленно.
+
+Для экспортеров собирающих метрики с локального хоста рекомендуется следовать правилу:
+
+одно приложение - один экспортер - один конфиг сбора метрик.

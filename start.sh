@@ -43,4 +43,4 @@ if [ -z "$CONFIG_YAML" ]; then
   CONFIG_YAML=/opt/exporter-jmx/default.yml
 fi
 
-java $JVM_OPTS -jar /opt/exporter-jmx/bin/jmx_prometheus_httpserver-$VERSION-jar-with-dependencies.jar $EXPORTER_PORT $CONFIG_YAML
+java $JVM_OPTS -jar /opt/exporter-jmx/bin/jmx_prometheus_httpserver.jar $EXPORTER_PORT $CONFIG_YAML
